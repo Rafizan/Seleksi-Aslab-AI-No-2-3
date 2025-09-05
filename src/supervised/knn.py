@@ -67,7 +67,6 @@ def main():
     print(f"Precision using {NSPLIT}-fold cross-validation: {np.mean(precisions) * 100:.2f}%")
 
     print("="*40)
-    # Sklearn KNN
     print("Using sklearn KNN implementation...")
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
     scaler = Scaler()
@@ -79,7 +78,6 @@ def main():
     precision = precision_score(y_test.values, preds)
     print(f"Precision using hold-out validation: {precision * 100:.2f}%")
 
-    # K-Fold
     precisions = np.zeros(NSPLIT)
     for fold, (train_idx, test_idx) in enumerate(skf.split(X, y)):
         X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
